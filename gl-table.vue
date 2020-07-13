@@ -112,7 +112,7 @@
       </el-table-column>
     </el-table>
 
-    <el-button v-if="showAddButton" class="filter-item pull-right" style="margin-right: 10px;" type="default" icon="el-icon-circle-plus-outline" @click="addNew(0)">
+    <el-button v-if="showAddButton" class="filter-item pull-right" style="margin-right: 10px;" type="default" icon="el-icon-circle-plus-outline" @click="addNew()">
       {{$t('ui.list.add')}}
     </el-button>
 
