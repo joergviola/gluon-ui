@@ -14,9 +14,10 @@ export default {
     props: ['user', 'cls', 'size'],
     computed: {
         avatar() {
-            const docs = this.user.documents.filter(doc => doc.path=='avatar')
-            if (docs.length>0) return docs[0]
-            else return null
+          if (!this.user.documents) return null
+          const docs = this.user.documents.filter(doc => doc.path=='avatar')
+          if (docs.length>0) return docs[0]
+          else return null
         },
         avatarText() {
             return this.user.name

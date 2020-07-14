@@ -105,6 +105,7 @@
             <i v-if="!hidden[row.value]" class="el-icon-caret-bottom"  @click="show(row.value, false)"/>
             <i v-if="hidden[row.value]" class="el-icon-caret-right"  @click="show(row.value, true)"/>
             <el-input class="no-border heading" v-model="row.value" @change="changeGroup(row)" />
+            <span class="pull-right" v-for="(reduced, i) in row.reduced" :key="i">{{$t(i18nKey+ reduced.name)}}: {{reduced.value}}</span>
           </h4>
         </template>
       </el-table-column>
@@ -155,7 +156,7 @@ export default {
 
       if (this.list.length==0) {
         return [
-          {$group: true, value: current},
+          {$group: true, value: current, reduced: []},
           Object.assign({}, this.template)
         ]
       }
@@ -172,17 +173,31 @@ export default {
 
       let first = this.list[0]
       let current = group(first)
-      const result = [{$group: true, value: current}]
+      const result = [{$group: true, value: current, reduced: []}]
 
       this.list.forEach((item,i) => {
         if (group(item) != current) {
           current = group(item)
-          result.push({$group: true, value: current})
+          result.push({$group: true, value: current, reduced: []})
         }
         if (!this.draggingGroup && !this.hidden[current]) {
           result.push(item)
         }
       })
+
+      if (this.groupBy.reduce) {
+        result
+          .filter(item => item.$group)
+          .forEach(row => {
+            const items = result.filter(item => !item.$group && group(item)==row.value)
+            this.groupBy.reduce.forEach(reduce => {
+              row.reduced.push({
+                name: reduce.name,
+                value: items.reduce((sum, item) => sum+item[reduce.name], 0)
+              })
+            })
+          })
+      }
 
       return result;
 
