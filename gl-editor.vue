@@ -52,7 +52,7 @@
               {{$t('ui.detail.cancel')}}
             </el-button>
             <span v-for="(button, i) in buttons" :key="i" >
-            <el-button v-if="!button.show || button.show(item)" type="danger" @click="click(button)">
+            <el-button v-if="!button.show || button.show(item)" type="danger" @click="$emit('click', button)">
               {{ $t('ui.button.'+button.label) }}
             </el-button>
             </span>
