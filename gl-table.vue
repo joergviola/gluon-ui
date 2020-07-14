@@ -78,7 +78,12 @@
             {{typeof col.name === 'string' ? _.get(row, col.name) : col.name(row) }}
           </span>
           <el-select v-if="!row.$group && col.type=='select'" class="no-border" v-model="row[col.name]" @change="save(row, col.name)" :disabled="!editable(row, col) || readonly" :placeholder="col.placeholder">
-            <el-option v-for="(o, i) in col.options" :key="i" :label="col.display ? _.get(o, col.display) : $t('type.'+type+'.'+col.name+'-options.'+o)" :value="col.id ? _.get(o, col.id) : o" />
+            <el-option 
+              v-for="(o, i) in col.options" 
+              :key="i" 
+              :label="col.display ? _.get(o, col.display) : $t('type.'+type+'.'+col.name+'-options.'+o)" 
+              :value="col.id ? _.get(o, col.id) : o" 
+            />
           </el-select>
           <el-date-picker
             :placeholder="col.placeholder"
