@@ -126,7 +126,7 @@ import Sortable from 'sortablejs'
 export default {
   name: 'gl-table',
   components: {ProgressBar},
-  props: ['list', 'i18nKey', 'detail', 'columns', 'template', 'createBy', 'allowDelete', 'sort', 'groupBy','readonly'],
+  props: ['type', 'list', 'i18nKey', 'detail', 'columns', 'template', 'createBy', 'allowDelete', 'sort', 'groupBy','readonly'],
   data() {
     return {
       hidden: {},
