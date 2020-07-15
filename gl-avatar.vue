@@ -28,3 +28,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.el-avatar img {
+  width: 100%;
+}
+</style>
