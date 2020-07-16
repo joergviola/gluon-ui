@@ -17,6 +17,14 @@ Vue.filter('date', function (value) {
   return moment(value).format('L')
 })
 
+Vue.filter('time', function (value) {
+  if (!value) return ''
+
+  if (!(value instanceof Date) )
+    value = new Date(value);
+  return moment(value).format('HH:mm')
+})
+
 Vue.filter('duration', function (value) {
   if (!value) return ''
 

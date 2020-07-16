@@ -47,7 +47,7 @@ export default {
   computed: {
     percentage() {
       if (!this.used) return 0
-      if (!this.planned) return 100
+      if (!this.planned) return 0
       const progress = this.used<this.planned 
         ? this.used / this.planned
         : 1-((this.used-this.planned) / this.used)
@@ -55,7 +55,7 @@ export default {
     },
     status() {
       if (!this.used) return 'success'
-      if (!this.planned) return 'exception'
+      if (!this.planned) return 'success'
       const progress = this.used / this.planned
       if (progress <= 0.8) return 'success'
       if (progress <= 1.0) return 'warning'
@@ -73,7 +73,7 @@ export default {
     backStyle() {
       const style = {};
       style.height = (this.width||12) + 'px';
-      if (this.used > this.planned) {
+      if (this.planned && this.used > this.planned) {
         style.backgroundColor = '#CC8844';
       }
       return style;
