@@ -6,11 +6,11 @@
   >
     <div slot="content">
       <span v-if="!used && !planned">Not worked on, no planned budget</span>
-      <span v-else-if="!planned">{{used}}, but no planned budget</span>
-      <span v-else-if="!used">0 of {{planned}}</span>
-      <span v-else-if="status=='exception'">{{Math.round(used/planned*100-100)}}% OVERRUN! {{used}} of {{planned}}</span>
-      <span v-else-if="status=='warning'">{{percentage}}% warning, {{used}} of {{planned}}</span>
-      <span v-else>{{used}} of {{planned}}</span>
+      <span v-else-if="!planned">{{used | duration}}, but no planned budget</span>
+      <span v-else-if="!used">0 of {{planned | duration}}</span>
+      <span v-else-if="status=='exception'">{{Math.round(used/planned*100-100)}}% OVERRUN! {{used | duration}} of {{planned | duration}}</span>
+      <span v-else-if="status=='warning'">{{percentage}}% warning, {{used | duration}} of {{planned | duration}}</span>
+      <span v-else>{{used | duration}} of {{planned | duration}}</span>
     </div>
     <div
       class="el-progress"
