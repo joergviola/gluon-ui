@@ -278,7 +278,7 @@ export default {
     changeGroup(row) {
       let i = this.rows.indexOf(row)
       const rows = []
-      while (!this.rows[++i].$group) {
+      while (i < this.rows.length-1 && !this.rows[++i].$group) {
         this.rows[i][this.groupBy.field] = row.value
         rows.push(this.rows[i])
       }
