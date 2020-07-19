@@ -103,7 +103,15 @@
           <h4 v-if="row.$group && i==0">
             <i v-if="!hidden[row.value]" class="el-icon-caret-bottom"  @click="show(row.value, false)"/>
             <i v-if="hidden[row.value]" class="el-icon-caret-right"  @click="show(row.value, true)"/>
-            <el-input class="no-border heading" v-model="row.value" @change="changeGroup(row)" />
+            <el-input v-if="!groupBy.type || groupBy.type=='text'" class="no-border heading" v-model="row.value" @change="changeGroup(row)" />
+            <el-select v-if="groupBy.type=='select'" class="no-border" v-model="row.value" @change="changeGroup(row)">
+              <el-option 
+                v-for="(o, i) in groupBy.options" 
+                :key="i" 
+                :label="groupBy.display ? _.get(o, groupBy.display) : $t('type.'+type+'.'+groupBy.field+'-options.'+o)" 
+                :value="groupBy.id ? _.get(o, groupBy.id) : o" 
+              />
+            </el-select>
             <span class="pull-right" v-for="(reduced, i) in row.reduced" :key="i">{{$t(i18nKey+ reduced.name)}}: {{reduced.value}}</span>
           </h4>
         </template>
