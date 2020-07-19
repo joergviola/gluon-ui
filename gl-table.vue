@@ -16,7 +16,6 @@
       :data="rows" 
       :span-method="spanMethod"
       row-key="id" 
-      fit
       border
       @row-click="row => !hasEditable && detailClicked(row)"
       >
