@@ -1,5 +1,5 @@
 <template>
-  <span :class="cls">
+  <span v-if="user" :class="cls">
     <el-avatar v-if="avatar" :size="size || 40" :src="avatar.url"></el-avatar>
     <el-avatar v-if="!avatar" :size="size || 40" >{{avatarText}}</el-avatar>
   </span>
