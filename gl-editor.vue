@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="40">
       <el-col :xs="24" :md="image ? 12 : 24">
-        <el-form ref="postForm" :model="item" label-position="left" label-width="120px" >
+        <el-form ref="postForm" :model="item" label-position="left" label-width="120px" :size="size">
           <el-form-item v-for="(field,i) in fields" :key="i" :label="$t('type.'+type+'.'+ field.name)">
             <el-input 
               v-if="field.type=='textarea'" 
@@ -21,10 +21,10 @@
               />
             </el-select>
             <el-date-picker
-              v-else-if="field.type=='date'"
+              v-else-if="field.type=='date' || field.type=='datetime' || field.type=='daterange'"
               v-model="item[field.name]"
               :type="field.type"
-              value-format="yyyy-MM-dd"
+              value-format="dateFormat(col.type)"
               :disabled="readonly"
             />
             <upload
@@ -76,7 +76,13 @@ import LinkEditor from './gl-linkEditor'
 export default {
   name: 'GlEditor',
   components: { Upload, LinkEditor },
-  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons'],
+  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons', 'size'],
+  methods: {
+    dateFormat(type) {
+      if (type=='date' || type=='daterange') return 'yyyy-MM-dd'
+      else return 'yyyy-MM-dd hh:mm'
+    },
+  }
 }
 </script>
 
