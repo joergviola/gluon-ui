@@ -48,7 +48,7 @@
         </el-form>
         <el-row type="flex" >
           <el-col :span="24" class="text-right">
-            <el-button type="secondary" @click="$emit('cancel')">
+            <el-button v-if="!hideDefaultButtons" type="secondary" @click="$emit('cancel')">
               {{$t('ui.detail.cancel')}}
             </el-button>
             <span v-for="(button, i) in buttons" :key="i" >
@@ -56,7 +56,7 @@
               {{ $t('ui.button.'+button.label) }}
             </el-button>
             </span>
-            <el-button type="primary" @click="$emit('save')">
+            <el-button v-if="!hideDefaultButtons" type="primary" @click="$emit('save')">
               {{$t('ui.detail.save')}}
             </el-button>
           </el-col>
@@ -76,7 +76,7 @@ import LinkEditor from './gl-linkEditor'
 export default {
   name: 'GlEditor',
   components: { Upload, LinkEditor },
-  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly'],
+  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons'],
 }
 </script>
 
