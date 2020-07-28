@@ -12,6 +12,7 @@
               :placeholder="field.placeholder" 
               :disabled="readonly"
             />
+            <el-checkbox v-else-if="field.type=='checkbox'" v-model="item[field.name]"></el-checkbox>
             <el-select v-else-if="field.type=='select'" v-model="item[field.name]" :disabled="readonly">
               <el-option 
                 v-for="(o, i) in field.options" 
@@ -36,7 +37,7 @@
             />
             <upload
               v-else-if="field.type=='doc'"
-              :docs="item[field.docs || 'documents']"
+              :docs="item[field.docs || field.name]"
               :path="field.name"
               @docs-added="docs => $emit('docs-added', docs)"
               @docs-removed="docs => $emit('docs-removed', docs)"
