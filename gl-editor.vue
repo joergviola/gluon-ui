@@ -21,11 +21,18 @@
               />
             </el-select>
             <el-date-picker
-              v-else-if="field.type=='date' || field.type=='datetime' || field.type=='daterange'"
+              v-else-if="field.type=='date' || field.type=='datetime'"
               v-model="item[field.name]"
               :type="field.type"
               value-format="dateFormat(col.type)"
               :disabled="readonly"
+            />
+            <gl-date-range
+              v-else-if="field.type=='daterange'"
+              :from="item[field.name]"
+              :to="item[field.to]"
+              :disabled="readonly"
+              @change="value => {item[field.name] = value.from; item[field.to] = value.to; }"
             />
             <upload
               v-else-if="field.type=='doc'"
@@ -72,10 +79,10 @@
 <script>
 import Upload from './gl-upload'
 import LinkEditor from './gl-linkEditor'
-
+import GlDateRange from './gl-date-range'
 export default {
   name: 'GlEditor',
-  components: { Upload, LinkEditor },
+  components: { Upload, LinkEditor, GlDateRange },
   props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons', 'size'],
   methods: {
     dateFormat(type) {
