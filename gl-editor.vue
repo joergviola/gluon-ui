@@ -11,9 +11,10 @@
               :autosize="{minRows:2, maxRows: field.maxRows || 4}"
               :placeholder="field.placeholder" 
               :disabled="readonly"
+              @change="onChange(field.name)"
             />
-            <el-checkbox v-else-if="field.type=='checkbox'" v-model="item[field.name]"></el-checkbox>
-            <el-select v-else-if="field.type=='select'" v-model="item[field.name]" :disabled="readonly">
+            <el-checkbox v-else-if="field.type=='checkbox'" v-model="item[field.name]" @change="onChange(field.name)"></el-checkbox>
+            <el-select v-else-if="field.type=='select'" v-model="item[field.name]" :disabled="readonly" @change="onChange(field.name)">
               <el-option 
                 v-for="(o, i) in field.options" 
                 :key="i" 
@@ -27,6 +28,7 @@
               :type="field.type"
               value-format="dateFormat(col.type)"
               :disabled="readonly"
+              @change="onChange(field.name)"
             />
             <gl-date-range
               v-else-if="field.type=='daterange'"
@@ -41,15 +43,17 @@
               :path="field.name"
               @docs-added="docs => $emit('docs-added', docs)"
               @docs-removed="docs => $emit('docs-removed', docs)"
+              @change="onChange(field.name)"
             />
             <link-editor 
               v-else-if="field.type=='links'"
               v-model="item[field.name]" 
               :disabled="readonly"
+              @change="onChange(field.name)"
             />
 
-            <el-input v-else-if="field.type=='password'" show-password v-model="item[field.name]" :disabled="readonly"/>
-            <el-input v-else type="text" :disabled="field.disabled || readonly" v-model="item[field.name]" >
+            <el-input v-else-if="field.type=='password'" show-password v-model="item[field.name]" :disabled="readonly" @change="onChange(field.name)"/>
+            <el-input v-else type="text" :disabled="field.disabled || readonly" v-model="item[field.name]" @change="onChange(field.name)">
               <template v-if="field.postfix" slot="append">{{field.postfix}}</template>
             </el-input>
           </el-form-item>
@@ -90,6 +94,9 @@ export default {
       if (type=='date' || type=='daterange') return 'yyyy-MM-dd'
       else return 'yyyy-MM-dd hh:mm'
     },
+    onChange(field) {
+      this.$emit('change', field)
+    }
   }
 }
 </script>

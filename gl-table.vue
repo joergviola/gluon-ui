@@ -26,7 +26,8 @@
               :item="row" 
               :fields="expandColumns" 
               :readonly="readonly" 
-              @save="save"
+              @change="field => save(row, field)"
+              :hideDefaultButtons="true"
             />
           </template>
       </el-table-column>
