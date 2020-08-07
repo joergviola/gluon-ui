@@ -12,6 +12,7 @@
     "element-ui": "^2.13.1",
     "loadash": "^1.0.0",
     "moment": "^2.25.3",
-    "sortablejs": "^1.10.2"
+    "sortablejs": "^1.10.2",
+    "vue-i18n": "^8.18.2"
   }
 }
