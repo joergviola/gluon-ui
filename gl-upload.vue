@@ -28,11 +28,19 @@ export default {
   },
   watch: {
     docs() {
-      const docs = this.docs.filter(doc => doc.path == this.path)
-      if (docs.length > 0) {
-        this.imageUrl = docs[0].url
+      if (Array.isArray(this.docs)) {
+        const docs = this.docs.filter(doc => doc.path == this.path)
+        if (docs.length > 0) {
+          this.imageUrl = docs[0].url
+        } else {
+          this.imageUrl = ''
+        }
       } else {
-        this.imageUrl = ''
+        if (this.docs) {
+          this.imageUrl = this.docs.url
+        } else {
+          this.imageUrl = ''
+        } 
       }
     }
   },
