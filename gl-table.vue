@@ -137,10 +137,11 @@
       </el-table-column>
     </el-table>
 
-    <el-button v-if="showAddButton" class="filter-item pull-right" style="margin-right: 10px;" type="default" icon="el-icon-circle-plus-outline" @click="addNew()">
-      {{$t('ui.list.add')}}
-    </el-button>
+    <span class="pull-right footer">
+      <slot name="footer"></slot>
 
+      <i v-if="showAddButton" class="el-icon-circle-plus-outline"  @click="addNew()" :title="$t('ui.list.add')"/>
+    </span>
   </div>
 </template>
 
@@ -546,4 +547,16 @@ svg.grab {
   border-left: none!important;
   border-right: none!important;
 }
+
+.footer {
+  padding-top: 10px;
+  color: #AAAAAA;
+  cursor: pointer;
+  font-size: 110%;
+}
+
+.footer i {
+  padding-right: 5px;
+}
+
 </style>

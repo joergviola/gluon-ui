@@ -202,7 +202,9 @@ export default {
       'showFilter': 'Filtern',
       'close': 'Schliessen',
       'search': 'Suchen',
-      'empty': 'Wählen'
+      'empty': 'Wählen',
+      'import': 'Import',
+      'export': 'Export'
     },
     'detail': {
       'cancel': 'Abbrechen',
