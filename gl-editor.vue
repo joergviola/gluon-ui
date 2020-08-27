@@ -60,7 +60,7 @@
         </el-form>
         <el-row type="flex" >
           <el-col :span="24" class="text-right">
-            <el-button v-if="!hideDefaultButtons" type="secondary" @click="$emit('cancel')">
+            <el-button v-if="!hideDefaultButtons && !hideCancel" type="secondary" @click="$emit('cancel')">
               {{$t('ui.detail.cancel')}}
             </el-button>
             <span v-for="(button, i) in buttons" :key="i" >
@@ -88,7 +88,7 @@ import GlDateRange from './gl-date-range'
 export default {
   name: 'GlEditor',
   components: { Upload, LinkEditor, GlDateRange },
-  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons', 'size'],
+  props: ['type', 'item', 'fields', 'buttons', 'image', 'reload', 'readonly', 'hideDefaultButtons', 'hideCancel', 'size'],
   methods: {
     dateFormat(type) {
       if (type=='date' || type=='daterange') return 'yyyy-MM-dd'
