@@ -26,7 +26,8 @@
               v-else-if="field.type=='date' || field.type=='datetime'"
               v-model="item[field.name]"
               :type="field.type"
-              value-format="dateFormat(col.type)"
+              :value-format="dateFormat(field.type)"
+              :format="dateFormat(field.type)"
               :disabled="readonly"
               @change="onChange(field.name)"
             />
@@ -92,7 +93,7 @@ export default {
   methods: {
     dateFormat(type) {
       if (type=='date' || type=='daterange') return 'yyyy-MM-dd'
-      else return 'yyyy-MM-dd hh:mm'
+      else return 'yyyy-MM-dd HH:mm'
     },
     onChange(field) {
       this.$emit('change', field)

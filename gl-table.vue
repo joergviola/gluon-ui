@@ -261,7 +261,7 @@ export default {
     },
     dateFormat(type) {
       if (type=='date') return 'yyyy-MM-dd'
-      else return 'yyyy-MM-dd hh:mm'
+      else return 'yyyy-MM-dd HH:mm'
     },
     create(pos = null) {
       if (this.createBy == 'row' || this.createBy==null) {
