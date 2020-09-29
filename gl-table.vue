@@ -18,6 +18,7 @@
       row-key="id" 
       border
       @row-click="row => !hasEditable && detailClicked(row)"
+      style="height: calc(100vh - 250px); overflow: auto;"
       >
       <el-table-column v-if="expandColumns.length>0" type="expand"  width="25">
           <template slot-scope="{row}">
