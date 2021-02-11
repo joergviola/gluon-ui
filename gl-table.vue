@@ -253,7 +253,10 @@ export default {
       if (typeof this.detail == 'string') {
         this.$router.push(`${this.detail}/${row.id}/detail`)
       } else {
-        this.detail(row)
+        const result = this.detail(row)
+        if (typeof result == 'string') {
+          this.$router.push(result)
+        }      
       }
     },
     show(value, show) {
